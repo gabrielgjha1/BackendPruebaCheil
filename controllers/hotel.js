@@ -57,8 +57,7 @@ const SaveHotel = async (req=request,res=response)=>{
     
         return res.status(200).json({
 
-            message:'Datos guardados',
-            HotelSave
+            'hotel':HotelSave
     
         })
     

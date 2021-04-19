@@ -10,6 +10,7 @@ const GetHotelCategory = async (req=request,res=response)=>{
     try {
         const hotel =await Hotel.find({
             $or:[{category:Number(category)},{porcentajeVotos:Number(score)}],
+            $and:[{status:true}]
       
             
         })
@@ -41,7 +42,7 @@ const GetHotelPric = async (req=request,res=response)=>{
     const {order=1} = req.params;
 
     try {
-        const hotel =await Hotel.find().sort({price:Number(order)})
+        const hotel =await Hotel.find({status:true}).sort({price:Number(order)})
 
 
         return res.status(200).json({
