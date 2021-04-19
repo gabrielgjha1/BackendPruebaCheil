@@ -3,6 +3,7 @@ var cors = require("cors");
 const path = require("path");
 const { dbConnection } = require("../database/config");
 const fileUpload = require("express-fileupload");
+const { response } = require("express");
 
 class Server {
   constructor() {
@@ -55,8 +56,8 @@ class Server {
     this.app.use(this.uploadsPath, require("../routes/uploads"));
     this.app.use(this.filtro, require("../routes/filtro"));
 
-    this.app.get("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "public/index.html"));
+    this.app.get("*", (req, res = response) => {
+      res.sendFile(path.resolve(__dirname, "../public/index.html"));
     });
   }
 
